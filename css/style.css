@@ -1,0 +1,177 @@
+body {
+    font-family: Inter, sans-serif;
+}
+
+/* ================================
+   GLOBAL
+=================================== */
+
+/* Hilangkan scrollbar (Chrome, Safari, Edge) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hilangkan scrollbar (Firefox) */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Container carousel */
+.carousel-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+/* Item carousel standar */
+.carousel-item {
+    flex: 0 0 auto;
+    min-width: 260px;
+}
+
+/* =================================================================
+   KALENDER MODE HP → DIBUAT DEFAULT (BERLAKU UNTUK DESKTOP JUGA)
+================================================================= */
+
+/* Kalender default: seperti HP, scroll kanan-kiri */
+#calendar-grid {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: auto;
+}
+
+/* Grafik scroll seperti HP */
+#hour-bars {
+    width: max-content;
+    overflow-x: auto;
+}
+
+#hour-bars > div {
+    min-width: 300px;
+}
+
+/* =================================================================
+   MOBILE TWO COLUMN MODE (Kalender + Grafik berdampingan)
+================================================================= */
+
+.mobile-two-col {
+    display: flex;
+    justify-content: center;
+}
+
+/* Saat tanggal dipilih */
+.mobile-two-col.active {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.mobile-graph-box {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+/* Animasi halus */
+.fade-in {
+    animation: fade .4s ease-out forwards;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =================================================================
+   FASILITAS — CAROUSEL DI SEMUA PERANGKAT
+================================================================= */
+.facility-wrapper {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    scroll-behavior: smooth; /* smooth swipe */
+}
+
+.carousel-item {
+    flex: 0 0 260px; /* semua kartu sama ukuran */
+    max-width: 260px;
+    min-width: 260px;
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.carousel-item:hover {
+    transform: scale(1.03);
+}
+
+/* Hide scrollbar jika mau */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+
+/* =================================================================
+   RESPONSIVE TWEAKS
+================================================================= */
+
+/* HP */
+@media (max-width: 640px) {
+
+    #calendar-grid {
+        width: max-content !important;
+    }
+
+    #hour-bars {
+        width: max-content !important;
+    }
+
+    #hour-bars > div {
+        min-width: 280px;
+    }
+}
+
+/* Tablet */
+@media (min-width: 641px) and (max-width: 1024px) {
+
+    .mobile-two-col.active {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    #hour-bars > div {
+        min-width: 260px;
+    }
+}
+
+/* Desktop tetap menggunakan layout HP */
+@media (min-width: 1025px) {
+
+    /* Kalender & grafik tetap scroll horizontal */
+    #calendar-grid,
+    #hour-bars {
+        width: max-content !important;
+    }
+
+    .mobile-two-col.active {
+        grid-template-columns: 1fr 1fr !important;
+    }
+
+    /* Fasilitas tetap carousel di desktop */
+    .facility-wrapper {
+        display: flex !important;
+        overflow-x: auto;
+    }
+}
+
